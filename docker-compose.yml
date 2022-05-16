@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    image: ruby:3.1.2
+    command: bash
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
