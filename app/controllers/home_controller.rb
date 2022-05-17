@@ -14,6 +14,12 @@ class HomeController < ApplicationController
                           orig: params[:start],
                           dest: params[:end],
                          )
+
+    if json["message"].present?
+      @error = json["message"]["error"]
+      return
+    end
+
     trip = json["schedule"]["request"]["trip"]
 
     @trip_time = trip["@tripTime"]

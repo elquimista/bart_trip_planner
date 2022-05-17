@@ -1,11 +1,15 @@
 turbo-frame#schedule
-  .p-2
-    h2.text-xl.font-bold
-      = "#{station_name(@start)} to #{station_name(@end)}"
-    | #{@trip_time} minutes (arrives at #{@arrives_at})
+  - if @error.present?
+    .p-2.text-red-600
+      | #{@error["text"]}: #{@error["details"]}
+  - else
+    .p-2
+      h2.text-xl.font-bold
+        = "#{station_name(@start)} to #{station_name(@end)}"
+      | #{@trip_time} minutes (arrives at #{@arrives_at})
 
-  = render partial: "trip_leg", collection: @trip_legs
+    = render partial: "trip_leg", collection: @trip_legs
 
-  .p-2.bg-stone-600.text-white
-    h2.text-xl.font-bold
-      | Arrive at #{station_name(@end)}
+    .p-2.bg-stone-600.text-white
+      h2.text-xl.font-bold
+        | Arrive at #{station_name(@end)}
