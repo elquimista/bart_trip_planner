@@ -1,0 +1,6 @@
+turbo-frame#schedule
+  h2= "#{station_name(@start)} to #{station_name(@end)}"
+  div
+    | #{@trip_time} minutes (arrives at #{@arrives_at})
+  = render partial: "trip_leg", collection: @trip_legs
+

@@ -1,0 +1,12 @@
+h2
+  = trip_leg_iteration.first? ? "Start" : "Change"
+  = " at #{station_name(trip_leg["@origin"])}"
+.flex
+  div= trip_leg["route"]["hexcolor"]
+  div= trip_leg["route"]["color"]
+ul
+  - stations = trip_leg["route"]["config"]["station"]
+  - orig_index = stations.index(trip_leg["@origin"])
+  - dest_index = stations.index(trip_leg["@destination"])
+  - stations[orig_index..dest_index].each do |station|
+    li= station_name(station)

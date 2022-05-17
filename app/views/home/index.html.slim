@@ -1,0 +1,16 @@
+.w-2/5
+  h1.text-3xl.font-bold.mb-5
+    | Trip Planner
+  = form_with url: "/trip_planner", data: { turbo_frame: "schedule" } do |f|
+    fieldset
+      = f.label "Start:", class: "inline-block w-2/12"
+      = f.select :start, @stations, {}, { class: "w-10/12" }
+    fieldset.mt-2
+      = f.label "End:", class: "inline-block w-2/12"
+      = f.select :end, @stations, {}, { class: "w-10/12" }
+    button.border.border-solid.w-full.px-8.mt-2 type="submit"
+      | Go!
+  div
+    turbo-frame#schedule
+.w-full
+  | Map is coming soon
