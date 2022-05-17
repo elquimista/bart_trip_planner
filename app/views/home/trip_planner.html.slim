@@ -1,6 +1,11 @@
 turbo-frame#schedule
-  h2= "#{station_name(@start)} to #{station_name(@end)}"
-  div
+  .p-2
+    h2.text-xl.font-bold
+      = "#{station_name(@start)} to #{station_name(@end)}"
     | #{@trip_time} minutes (arrives at #{@arrives_at})
+
   = render partial: "trip_leg", collection: @trip_legs
 
+  .p-2.bg-stone-600.text-white
+    h2.text-xl.font-bold
+      | Arrive at #{station_name(@end)}

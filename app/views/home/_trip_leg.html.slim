@@ -1,12 +1,18 @@
-h2
-  = trip_leg_iteration.first? ? "Start" : "Change"
-  = " at #{station_name(trip_leg["@origin"])}"
-.flex
-  div= trip_leg["route"]["hexcolor"]
-  div= trip_leg["route"]["color"]
-ul
-  - stations = trip_leg["route"]["config"]["station"]
-  - orig_index = stations.index(trip_leg["@origin"])
-  - dest_index = stations.index(trip_leg["@destination"])
-  - stations[orig_index..dest_index].each do |station|
-    li= station_name(station)
+.p-2.bg-stone-600.text-white
+  h2.text-xl.font-bold
+    = trip_leg_iteration.first? ? "Start" : "Change"
+    = " at #{station_name(trip_leg["@origin"])}"
+.flex.items-center.p-2.bg-stone-600.text-white.border-t-2.border-solid.border-white
+  .w-10.h-10.rounded-full style="background-color: #{trip_leg["route"]["hexcolor"]};"
+  .ml-4
+    h3.text-xl.font-bold
+      | #{trip_leg["route"]["color"].titleize} Line
+    .italic.text-sm
+      | towards #{station_name(trip_leg["route"]["destination"])}
+.p-4
+  ul.list-disc.ml-4
+    - stations = trip_leg["route"]["config"]["station"]
+    - orig_index = stations.index(trip_leg["@origin"])
+    - dest_index = stations.index(trip_leg["@destination"])
+    - stations[orig_index..dest_index].each do |station|
+      li= station_name(station)
