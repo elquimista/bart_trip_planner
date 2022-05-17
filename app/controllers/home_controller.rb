@@ -38,9 +38,7 @@ class HomeController < ApplicationController
   def pull_stations
     @stations ||= begin
       json = BartClient.get("/stn.aspx", cmd: "stns")
-      json["stations"]["station"].map do |station|
-        [station["name"], station["abbr"]]
-      end
+      json["stations"]["station"]
     end
   end
 end

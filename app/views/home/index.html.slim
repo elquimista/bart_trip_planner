@@ -4,13 +4,14 @@
   = form_with url: "/trip_planner", data: { turbo_frame: "schedule" } do |f|
     fieldset
       = f.label "Start:", class: "inline-block w-2/12"
-      = f.select :start, @stations, {}, { class: "w-10/12" }
+      = f.select :start, options_for_stations, {}, { class: "w-10/12" }
     fieldset.mt-2
       = f.label "End:", class: "inline-block w-2/12"
-      = f.select :end, @stations, {}, { class: "w-10/12" }
+      = f.select :end, options_for_stations, {}, { class: "w-10/12" }
     button.border.border-solid.border-blue-700.w-full.p-2.mt-2 type="submit"
       | Go!
   .border.border-solid.mt-4
     turbo-frame#schedule
-.w-full
-  | Map is coming soon
+
+.w-full.ml-6 style="height: calc(100vh - 2rem * 2);"
+  #map.h-full data-controller="map" data-stations=@stations.to_json
